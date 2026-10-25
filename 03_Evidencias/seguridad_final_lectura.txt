@@ -1,0 +1,71 @@
+Null display is "(NULL)".
+===== 1. IDENTIDAD DE LA CONEXION =====
+          base          | usuario_sesion | usuario_efectivo 
+------------------------+----------------+------------------
+ autoaudit_restauracion | postgres       | postgres
+(1 row)
+
+===== 2. ROLES DE AUTOAUDIT =====
+     rolname      | rolcanlogin | rolsuper | rolcreatedb | rolcreaterole | rolbypassrls 
+------------------+-------------+----------+-------------+---------------+--------------
+ autoaudit_admin  | t           | f        | f           | f             | f
+ autoaudit_lector | f           | f        | f           | f             | f
+(2 rows)
+
+===== 3. PROPIETARIOS DE TABLAS CRITICAS =====
+        tablename        |   tableowner    
+-------------------------+-----------------
+ bitacora_auditoria      | autoaudit_admin
+ columnas_auditadas      | autoaudit_admin
+ configuracion_auditoria | autoaudit_admin
+ detalle_bitacora        | autoaudit_admin
+ productos_prueba        | autoaudit_admin
+ tablas_auditadas        | autoaudit_admin
+(6 rows)
+
+===== 4. PERMISOS DEL ROL LECTOR (SI EXISTE) =====
+       tabla        | leer | insertar | modificar | borrar 
+--------------------+------+----------+-----------+--------
+ bitacora_auditoria | t    | f        | f         | f
+ detalle_bitacora   | t    | f        | f         | f
+(2 rows)
+
+===== 5. ROLES CON LOGIN Y PRIVILEGIOS SOBRE BITACORA =====
+    rol_login    | superusuario | leer | insertar | modificar | borrar 
+-----------------+--------------+------+----------+-----------+--------
+ autoaudit_admin | f            | t    | t        | t         | t
+ postgres        | t            | t    | t        | t         | t
+(2 rows)
+
+===== 6. FUNCIONES, PROPIETARIO, SECURITY DEFINER Y PUBLIC EXECUTE =====
+              funcion              |   propietario   | propietario_es_superusuario | security_definer |          configuracion          | public_puede_execute 
+-----------------------------------+-----------------+-----------------------------+------------------+---------------------------------+----------------------
+ fn_autoaudit_generica             | autoaudit_admin | f                           | t                | search_path=pg_catalog, pg_temp | t
+ fn_sincronizar_triggers_autoaudit | postgres        | t                           | f                | (SIN CONFIGURACION)             | t
+(2 rows)
+
+===== 7. PERMISO CREATE DEL ESQUEMA PUBLIC PARA PUBLIC =====
+ nspname | public_puede_crear_objetos 
+---------+----------------------------
+ public  | f
+(1 row)
+
+===== 8. ESTADO DE TRIGGERS (O = HABILITADO NORMAL) =====
+      tabla       |    trigger    | estado 
+------------------+---------------+--------
+ cliente_prueba   | trg_autoaudit | O
+ productos_prueba | trg_autoaudit | O
+(2 rows)
+
+===== 9. REGISTRO DE IP Y NUMERO ACTUAL DE REGLAS =====
+ existe_ip_origen 
+------------------
+ t
+(1 row)
+
+ reglas_activas 
+----------------
+              5
+(1 row)
+
+===== FIN: DIAGNOSTICO SOLO LECTURA =====

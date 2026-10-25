@@ -1,0 +1,21 @@
+﻿Requisito,Estado al 24-10-2026,Evidencia/siguiente paso
+PostgreSQL 18 y Ubuntu 26.04,Probado,Capturas de psql 18.6 en Ubuntu virtualizado
+Entidad-relación completo,Parcial,Diagrama conceptual incluido; completar con metadatos exportados
+Diccionario de datos detallado,Pendiente de ejecutar,04_exportaciones.sql extrae estructura real
+Selección de tablas y columnas desde catálogo,Parcial,Consultas y consola de lectura; configuración interactiva no verificada
+Activación por INSERT/UPDATE/DELETE,Probado,configuracion_auditoria activa t/f
+Triggers AFTER dinámicos,Probado en 2 tablas,fn_sincronizar_triggers_autoaudit invocado por administrador
+Procesamiento automático al cambiar configuración,Por validar,"La función se ejecuta bajo demanda, no al modificar configuración"
+"Bitácora, valores viejo/nuevo",Probado,7 cambios restaurados; pruebas INSERT/UPDATE/DELETE
+"Usuario, fecha, registro ID",Probado,Consultas e imágenes previas
+IP origen,Pendiente,Script opt-in: ip_origen inet + inet_client_addr(); socket => NULL
+Historial por usuario/columna/fecha,Probado,SQL y reporte_autoaudit
+Exportación CSV,Probado,7 filas + encabezado exportados
+Rol solo lectura,Pendiente de ejecutar,01_rol_lector.sql y 06_prueba_lector...
+Bloqueo escritura directa desde usuario operativo,Pendiente,Función actual usa SECURITY INVOKER; ver análisis en informe
+Pruebas volumen 100 y 1000,Probado,16.201ms y 138.796ms UPDATE
+Sobrecarga relativa frente a sin trigger,Pendiente,No comparar sin medición control equivalente
+Manejo de errores y validación catálogo,Parcial,Verificaciones previas en generador; ampliar pruebas negativas
+Interfaz requerida por el profesor,Pendiente/parcial,Consola local de consulta no sustituye interfaz web
+Manual instalación/despliegue,Borrador,Manual y scripts incluidos
+Repositorio GitHub/GitLab,Pendiente,Preparar y publicar con revisión de secretos

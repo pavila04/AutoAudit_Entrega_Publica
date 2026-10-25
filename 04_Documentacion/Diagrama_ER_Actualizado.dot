@@ -1,0 +1,26 @@
+digraph AutoAudit {
+graph [rankdir=LR, bgcolor="#ffffff", nodesep="0.55", ranksep="1.1", splines=polyline, fontname="DejaVu Sans", label="AutoAudit — entidades y relaciones (estructura actual + ip_origen)", labelloc=t, fontsize=21];
+node [shape=record, style="rounded,filled", fillcolor="#f0f5fa", color="#52697b", fontname="DejaVu Sans", fontsize=11, margin="0.12,0.08"];
+edge [color="#58748a", fontname="DejaVu Sans", fontsize=9, arrowsize=0.7];
+ta [shape=plain, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#52697b" BGCOLOR="#f0f5fa"><TR><TD BGCOLOR="#dce9f4" ALIGN="CENTER"><B>tablas_auditadas</B></TD></TR><TR><TD ALIGN="LEFT">id_tabla PK</TD></TR><TR><TD ALIGN="LEFT">esquema</TD></TR><TR><TD ALIGN="LEFT">nombre_tabla</TD></TR><TR><TD ALIGN="LEFT">activa</TD></TR><TR><TD ALIGN="LEFT">fecha_creacion</TD></TR></TABLE>>];
+ca [shape=plain, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#52697b" BGCOLOR="#f0f5fa"><TR><TD BGCOLOR="#dce9f4" ALIGN="CENTER"><B>columnas_auditadas</B></TD></TR><TR><TD ALIGN="LEFT">id_columna PK</TD></TR><TR><TD ALIGN="LEFT">id_tabla FK</TD></TR><TR><TD ALIGN="LEFT">nombre_columna</TD></TR><TR><TD ALIGN="LEFT">activa</TD></TR></TABLE>>];
+cfg [shape=plain, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#52697b" BGCOLOR="#f0f5fa"><TR><TD BGCOLOR="#dce9f4" ALIGN="CENTER"><B>configuracion_auditoria</B></TD></TR><TR><TD ALIGN="LEFT">id_config PK</TD></TR><TR><TD ALIGN="LEFT">id_columna FK</TD></TR><TR><TD ALIGN="LEFT">id_evento FK</TD></TR><TR><TD ALIGN="LEFT">activa</TD></TR></TABLE>>];
+ev [shape=plain, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#52697b" BGCOLOR="#f0f5fa"><TR><TD BGCOLOR="#dce9f4" ALIGN="CENTER"><B>eventos_auditoria</B></TD></TR><TR><TD ALIGN="LEFT">id_evento PK</TD></TR><TR><TD ALIGN="LEFT">nombre_evento</TD></TR><TR><TD ALIGN="LEFT">descripcion</TD></TR></TABLE>>];
+ba [shape=plain, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#52697b" BGCOLOR="#f0f5fa"><TR><TD BGCOLOR="#dce9f4" ALIGN="CENTER"><B>bitacora_auditoria</B></TD></TR><TR><TD ALIGN="LEFT">id_bitacora PK</TD></TR><TR><TD ALIGN="LEFT">id_tabla FK</TD></TR><TR><TD ALIGN="LEFT">id_evento FK</TD></TR><TR><TD ALIGN="LEFT">id_usuario FK (nullable)</TD></TR><TR><TD ALIGN="LEFT">id_estacion FK (nullable)</TD></TR><TR><TD ALIGN="LEFT">registro_id (texto)</TD></TR><TR><TD ALIGN="LEFT">fecha_evento</TD></TR><TR><TD ALIGN="LEFT">ip_origen (inet)</TD></TR></TABLE>>];
+db [shape=plain, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#52697b" BGCOLOR="#f0f5fa"><TR><TD BGCOLOR="#dce9f4" ALIGN="CENTER"><B>detalle_bitacora</B></TD></TR><TR><TD ALIGN="LEFT">id_detalle PK</TD></TR><TR><TD ALIGN="LEFT">id_bitacora FK</TD></TR><TR><TD ALIGN="LEFT">id_columna FK</TD></TR><TR><TD ALIGN="LEFT">valor_anterior</TD></TR><TR><TD ALIGN="LEFT">valor_nuevo</TD></TR></TABLE>>];
+us [shape=plain, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#52697b" BGCOLOR="#f0f5fa"><TR><TD BGCOLOR="#dce9f4" ALIGN="CENTER"><B>usuarios_auditados</B></TD></TR><TR><TD ALIGN="LEFT">id_usuario PK</TD></TR><TR><TD ALIGN="LEFT">nombre_usuario</TD></TR><TR><TD ALIGN="LEFT">activo</TD></TR></TABLE>>];
+es [shape=plain, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#52697b" BGCOLOR="#f0f5fa"><TR><TD BGCOLOR="#dce9f4" ALIGN="CENTER"><B>estaciones_trabajo</B></TD></TR><TR><TD ALIGN="LEFT">id_estacion PK</TD></TR><TR><TD ALIGN="LEFT">nombre_equipo</TD></TR><TR><TD ALIGN="LEFT">ip_origen</TD></TR><TR><TD ALIGN="LEFT">fecha_registro</TD></TR></TABLE>>];
+cp [shape=plain, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#52697b" BGCOLOR="#f0f5fa"><TR><TD BGCOLOR="#dce9f4" ALIGN="CENTER"><B>cliente_prueba</B></TD></TR><TR><TD ALIGN="LEFT">id_cliente PK</TD></TR><TR><TD ALIGN="LEFT">nombre</TD></TR><TR><TD ALIGN="LEFT">telefono</TD></TR></TABLE>>];
+pp [shape=plain, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#52697b" BGCOLOR="#f0f5fa"><TR><TD BGCOLOR="#dce9f4" ALIGN="CENTER"><B>productos_prueba</B></TD></TR><TR><TD ALIGN="LEFT">id_producto PK</TD></TR><TR><TD ALIGN="LEFT">nombre</TD></TR><TR><TD ALIGN="LEFT">precio</TD></TR></TABLE>>];
+ta -> ca [label="id_tabla  (1:N)"];
+ca -> cfg [label="id_columna  (1:N)"];
+ev -> cfg [label="id_evento  (1:N)"];
+ta -> ba [label="id_tabla  (1:N)"];
+ev -> ba [label="id_evento  (1:N)"];
+us -> ba [label="id_usuario  (1:N)"];
+es -> ba [label="id_estacion  (1:N)"];
+ba -> db [label="id_bitacora  (1:N)"];
+ca -> db [label="id_columna  (1:N)"];
+cp -> ta [style=dashed, constraint=false, label="referencia lógica; SIN FK"];
+pp -> ta [style=dashed, constraint=false, label="referencia lógica; SIN FK"];
+}

@@ -1,0 +1,15 @@
+PAQUETE AUTOAUDIT PARA REPOSITORIO PUBLICO
+
+Contiene las cuatro carpetas que pediste, el código de la versión de pruebas,
+las evidencias académicas completas disponibles y el informe actualizado.
+
+Publicar desde una carpeta NUEVA; no reemplazar el repositorio privado anterior.
+Crear primero un repositorio Git local de esta carpeta con GitHub Desktop.
+Luego publicar con 'Keep this code private' DESMARCADO.
+
+ATENCION: el .dump binario y los CSV reales exportados desde Ubuntu NO estan
+incluidos porque no fueron aportados. En las capturas y scripts estan los datos
+y reglas de ejemplo verificados. Si subes un .dump real, revisa antes si tiene
+datos personales, credenciales o informacion ajena a la tarea.
+
+El proyecto no esta certificado para uso en produccion.

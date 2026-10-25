@@ -1,0 +1,10 @@
+-- GUIÓN DE MEDICIÓN SIN AUDITORÍA (OPT-IN NO EJECUTAR AUTOMATICAMENTE).
+-- Comparar en base clonada mediante una TABLA DE PRUEBA SEPARADA,
+-- con esquema equivalente a productos_prueba pero sin trigger.
+-- No desactivar trg_autoaudit en la tabla original.
+-- 1. Crear tabla de ensayo en otra sesion:
+-- CREATE TABLE public.productos_control (LIKE public.productos_prueba INCLUDING DEFAULTS INCLUDING CONSTRAINTS);
+-- 2. Evitar secuencias compartidas si se hace LIKE INCLUDING ALL.
+-- 3. Insertar 1000 datos control y medir UPDATE con EXPLAIN ANALYZE.
+-- 4. Limpiar tabla de control; comparar medianas de 3 corridas.
+-- No incluir números inventados en el informe.

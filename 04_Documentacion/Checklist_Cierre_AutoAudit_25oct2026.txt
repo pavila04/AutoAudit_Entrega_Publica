@@ -1,0 +1,21 @@
+AUTOAUDIT - CIERRE AL 25 DE OCTUBRE DE 2026
+
+COMPROBADO
+[X] Cinco reglas activas y consulta histórica; prueba INSERT adicional con ROLLBACK.
+[X] Registro de IP por TCP local (127.0.0.1).
+[X] Permiso de rol lector limitado a SELECT para bitácoras.
+[X] Copia, restauración y prueba de instalación limpia aislada.
+[X] Ajuste REVOKE EXECUTE FROM PUBLIC y GRANT a autoaudit_admin en funciones; verificación posterior.
+[X] Regresión del trigger luego del ajuste (UPDATE 1 / ROLLBACK).
+[X] Repositorio publicado en GitHub como PRIVATE.
+
+PENDIENTES
+[ ] Confirmar aceptación de consola por docente.
+[ ] Rellenar portada (nombres, carné y docente).
+[ ] Dar acceso al docente como colaborador mientras repositorio sea privado.
+[ ] Revisar los 55 archivos registrados y el historial remoto para posibles credenciales.
+[ ] Separar roles propietario/operativos antes de usar en producción, si se solicita.
+[ ] Probar fallos de configuración y sincronización, cuando sean exigidos.
+[ ] Medir línea base sin auditoría solo si la evaluación lo exige.
+
+No publicar .dump, CSV privados, salidas_locales ni contraseñas.

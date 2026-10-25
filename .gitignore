@@ -1,0 +1,14 @@
+.env
+.env.*
+*.dump
+*.backup
+*.secret
+*.key
+*.pem
+*token*
+*password*
+*clave*
+salidas_locales/
+__pycache__/
+*.pyc
+.DS_Store
